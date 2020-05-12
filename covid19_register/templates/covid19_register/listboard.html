@@ -1,0 +1,64 @@
+{% extends "edc_dashboard/listboard.html" %}
+{% load admin_urls %}
+{% load edc_base_extras %}
+
+{% block extra-scripts %}
+{{ block.super }}
+
+<script type="text/javascript">
+</script>
+{% endblock extra-scripts %}
+             
+{% block listboard_panel %}
+    <a id="return_to_home" title="go back" class="btn btn-sm btn-default" role="button" 
+        href="/">
+            <i class="fa fa-arrow-left fa-sm"></i> Go Back
+    </a>
+    <a id="add_contact" title="go back" class="btn btn-sm btn-default" role="button" 
+        href="{{ contact_add_url }}?next={{ contact_listboard_url }}">
+            <i class="fas fa-address-book"></i> Add Contact
+    </a>
+{% endblock listboard_panel %}
+{% block listboard_table_button_column %}
+{% endblock listboard_table_button_column %}
+
+{% block listboard_table_header %}
+    <!-- begin results header -->
+    <th>#</th>
+    <th>Name and Surname</th>
+    <th>Edit</th>
+    <th>Omang/Passport number</th>
+    <th>Contact Number</th>
+    <th>Physical Address</th>
+    <th>Reason for Permit</th>
+    <th>Place of Work</th>
+    <th>Date of Birth</th>
+    <th>Gender</th>
+    <th>Temperature</th>
+    <th>Time in</th>
+    <th>Time Out</th>
+    <!-- end results header -->
+{% endblock listboard_table_header %}
+
+
+{% block listboard_table_columns %}
+	<td>{{ result.first_name }} {{result.last_name}}</td>
+	<td style="white-space: nowrap">
+    <div class="btn-group">
+    <a title="Edit data action item" role="button" 
+       class="btn btn-default btn-sm"
+           href="{{ result.href }}">
+        <i class="fa fa-pencil-alt fa-sm"></i>
+    </a>
+    </div>
+	</td>
+	<td>{{ result.identity }} </td>
+	<td>{{ result.cell }} </td>
+	<td>{{ result.physical_address }} </td>
+	<td>{{result.permit_reason}}</td>
+	<td>{{result.work_place}}</td>
+	<td>{{result.gender}}</td>
+	<td>{{result.temperature}}</td>
+	<td>{{result.time_in}}</td>
+	<td>{{result.time_out}}</td>
+{% endblock listboard_table_columns %}
