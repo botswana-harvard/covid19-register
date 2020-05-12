@@ -10,7 +10,7 @@ with open(os.path.join(os.path.dirname(__file__), 'README.md')) as readme:
 os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
-    name='edc-data-manager',
+    name='covid19-register',
     version='0.1.dev',
     author=u'Software Engineering & Data Management',
     author_email='se-dmc@bhp.org.bw',

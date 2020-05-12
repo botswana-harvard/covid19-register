@@ -25,6 +25,7 @@ SECRET_KEY = 'ig(p-yhokf3pdgu#5o9w$dfco^!(*xvtd1afprp&ra3_pi2a02'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+LIVE_SYSTEM = True
 
 ALLOWED_HOSTS = [
     'localhost', 'covid19-register.bhp.org.bw', '127.0.0.1']
@@ -131,8 +132,8 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # dashboards
 DASHBOARD_URL_NAMES = {
-    'visitor_listboard_url': 'visitor_listboard_url',
-    'employee_listboard_url': 'employee_listboard_url',
+    'visitor_listboard_url': 'covid19_register:visitor_listboard_url',
+    'employee_listboard_url': 'covid19_register:employee_listboard_url',
 }
 
 LAB_DASHBOARD_URL_NAMES = {}
