@@ -28,8 +28,7 @@ app_name = 'covid19_register'
 app_config = django_apps.get_app_config(app_name)
 
 urlpatterns = [
-    path('accounts/', include('edc_base.auth.urls')),
-    path('admin/', include('edc_base.auth.urls')),
+
 
     path('admin/', admin.site.urls),
     path('admin/', covid19_register_admin.urls),
