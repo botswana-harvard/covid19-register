@@ -23,7 +23,7 @@ class VisitorListBoardView(
 
     model = 'covid19_register.visitor'
     model_wrapper_cls = VisitorModelWrapper
-    navbar_name = 'visitor'
+    navbar_name = 'covid_19'
     navbar_selected_item = 'visitor'
     ordering = '-modified'
     paginate_by = 10

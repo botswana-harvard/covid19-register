@@ -23,12 +23,10 @@ from .views import (
     AdministrationView, HomeView,
     VisitorListBoardView, EmployeeListBoardView)
 
-
 app_name = 'covid19_register'
 app_config = django_apps.get_app_config(app_name)
 
 urlpatterns = [
-
 
     path('admin/', admin.site.urls),
     path('admin/', covid19_register_admin.urls),
