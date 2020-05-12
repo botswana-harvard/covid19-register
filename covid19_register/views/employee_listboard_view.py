@@ -23,7 +23,7 @@ class EmployeeListBoardView(
 
     model = 'covid19_register.employee'
     model_wrapper_cls = EmployeeModelWrapper
-    navbar_name = 'employee'
+    navbar_name = 'covid_19'
     navbar_selected_item = 'employee'
     ordering = '-modified'
     paginate_by = 10
