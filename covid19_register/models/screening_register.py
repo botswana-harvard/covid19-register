@@ -76,7 +76,8 @@ class ScreeningRegister(CryptoMixin, models.Model):
 
     temperature = models.DecimalField(
         verbose_name='Body Temperature',
-        max_digits=5, decimal_places=2)
+        max_digits=5, decimal_places=2,
+        help_text='Unit is Celsius')
 
     class Meta:
         abstract = True
