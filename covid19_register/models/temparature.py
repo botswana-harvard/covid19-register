@@ -3,7 +3,6 @@ from django.db import models
 from django_crypto_fields.fields import IdentityField
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.sites.site_model_mixin import SiteModelMixin
-from edc_base.utils import get_utcnow
 
 
 class Temperature(SiteModelMixin, BaseUuidModel):
@@ -12,8 +11,7 @@ class Temperature(SiteModelMixin, BaseUuidModel):
         verbose_name='Identity number')
 
     today_date = models.DateField(
-        verbose_name='Date',
-        default=get_utcnow)
+        verbose_name='Date')
 
     time_in = models.TimeField(
         verbose_name='Time in')
