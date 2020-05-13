@@ -14,10 +14,18 @@
         href="/">
             <i class="fa fa-arrow-left fa-sm"></i> Go Back
     </a>
+    {% if contact == 'visitor' %}
     <a id="add_contact" title="go back" class="btn btn-sm btn-default" role="button" 
-        href="{{ contact_add_url }}?next={{ contact_listboard_url }}">
-            <i class="fas fa-address-book"></i> Add Contact
+        href="{{ contact_add_url }}?next={{ visitor_listboard_url }}">
+            <i class="fas fa-address-book"></i> Add Visitor
     </a>
+    {% endif %}
+    {% if contact == 'employee' %}
+    <a id="add_contact" title="go back" class="btn btn-sm btn-default" role="button" 
+        href="{{ contact_add_url }}?next={{ employee_listboard_url }}">
+            <i class="fas fa-address-book"></i> Add Staff
+    </a>
+    {% endif %}
 {% endblock listboard_panel %}
 {% block listboard_table_button_column %}
 {% endblock listboard_table_button_column %}
@@ -42,6 +50,7 @@
 
 
 {% block listboard_table_columns %}
+	{{result.today_temperature}}
 	<td>{{ result.first_name }} {{result.last_name}}</td>
 	<td style="white-space: nowrap">
     <div class="btn-group">
@@ -50,6 +59,16 @@
            href="{{ result.href }}">
         <i class="fa fa-pencil-alt fa-sm"></i>
     </a>
+    {% if contact == 'visitor' %}
+    <a id="btn-temperature" class="btn btn-primary btn-sm" role="button"   
+     title="add_temperature" href="{{result.temperature_obj.href }}?next={{ visitor_listboard_url }}">
+     <i class="far fa-user-circle fa-sm"></i> Temperature  <i class="fa fa-share"></i></a>
+    {% endif %}
+    {% if contact == 'employee' %}
+    <a id="btn-temperature" class="btn btn-primary btn-sm" role="button"   
+     title="add_temperature" href="{{result.temperature_obj.href }}?next={{ employee_listboard_url }}">
+     <i class="far fa-user-circle fa-sm"></i> Temperature  <i class="fa fa-share"></i></a>
+    {% endif %}
     </div>
 	</td>
 	<td>{{ result.identity }} </td>
@@ -58,7 +77,7 @@
 	<td>{{result.permit_reason}}</td>
 	<td>{{result.work_place}}</td>
 	<td>{{result.gender}}</td>
-	<td>{{result.temperature}}</td>
-	<td>{{result.time_in}}</td>
-	<td>{{result.time_out}}</td>
+	<td>{{result.temperature.temperature}}</td>
+	<td>{{result.temperature.time_in}}</td>
+	<td>{{result.temperature.time_out}}</td>
 {% endblock listboard_table_columns %}

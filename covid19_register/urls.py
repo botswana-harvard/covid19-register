@@ -13,28 +13,21 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
 from django.apps import apps as django_apps
-from django.urls import path, include
+from django.contrib import admin
+from django.urls import path
+
 from edc_dashboard import UrlConfig
 
 from .admin_site import covid19_register_admin
-from .views import (
-    AdministrationView, HomeView,
-    VisitorListBoardView, EmployeeListBoardView)
+from .views import HomeView, VisitorListBoardView, EmployeeListBoardView
 
 app_name = 'covid19_register'
 app_config = django_apps.get_app_config(app_name)
 
 urlpatterns = [
-
     path('admin/', admin.site.urls),
     path('admin/', covid19_register_admin.urls),
-
-    path('administration/', AdministrationView.as_view(),
-         name='administration_url'),
-    path('edc_base/', include('edc_base.urls')),
-    path('edc_device/', include('edc_device.urls')),
     path('', HomeView.as_view(), name='home_url'),
 ]
 

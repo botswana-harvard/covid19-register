@@ -9,6 +9,11 @@ from edc_model_admin import (
     ModelAdminRedirectOnDeleteMixin)
 from edc_model_admin import audit_fieldset_tuple
 
+from ..admin_site import covid19_register_admin
+from ..forms import TemperatureForm
+from ..models import Temperature
+from .base_admin_model_mixin import ModelAdminMixin
+
 
 class ModelAdminMixin(ModelAdminNextUrlRedirectMixin,
                       ModelAdminFormInstructionsMixin,
@@ -22,31 +27,27 @@ class ModelAdminMixin(ModelAdminNextUrlRedirectMixin,
     date_hierarchy = 'modified'
     empty_value_display = '-'
 
+
+@admin.register(Temperature, site=covid19_register_admin)
+class TemperatureAdmin(ModelAdminMixin, admin.ModelAdmin):
+
+    form = TemperatureForm
+
     fieldsets = (
         (None, {
             'fields': (
-                'temperature',
-                'first_name',
-                'last_name',
-                'dob',
-                'gender',
-                'identity',
-                'cell',
-                'physical_address',
-                'permit_reason',
-                'work_place',)}),
+                'today_date',
+                'time_in',
+                'time_out',
+                'temperature')}),
         audit_fieldset_tuple
     )
 
-    radio_fields = {
-        'gender': admin.VERTICAL}
-
     list_display = [
-        'created', 'identity', 'cell',
-        'first_name', 'last_name']
+        'created', 'today_date', 'time_in',
+        'time_out', 'temperature']
 
     list_filter = [
-        'created', 'user_created', 'modified', 'user_modified']
+        'created', 'today_date', 'time_in', 'time_out', 'user_modified']
 
-    search_fields = (
-        'identity', 'cell', 'first_name', 'last_name')
+    search_fields = ('temperature',)

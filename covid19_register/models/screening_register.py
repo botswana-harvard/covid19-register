@@ -7,11 +7,16 @@ from django_crypto_fields.fields import IdentityField
 from django_crypto_fields.fields import LastnameField
 from django_crypto_fields.mixins import CryptoMixin
 from edc_base.model_validators import CellNumber
-from edc_base.utils import get_utcnow
 from edc_constants.choices import GENDER_UNDETERMINED
+
+from .temparature import Temperature
 
 
 class ScreeningRegister(CryptoMixin, models.Model):
+
+    temperature = models.ForeignKey(
+        Temperature, on_delete=models.PROTECT, null=True, blank=True,
+        verbose_name='Temperature')
 
     first_name = FirstnameField(
         null=True, blank=False)
@@ -62,22 +67,11 @@ class ScreeningRegister(CryptoMixin, models.Model):
         null=True,
         help_text='')
 
-    today_date = models.DateField(
-        verbose_name='Date',
-        default=get_utcnow)
-
-    time_in = models.TimeField(
-        verbose_name='Time in')
-
-    time_out = models.TimeField(
-        verbose_name='Time out',
-        blank=True,
-        null=True,)
-
-    temperature = models.DecimalField(
-        verbose_name='Body Temperature',
-        max_digits=5, decimal_places=2,
-        help_text='Unit is Celsius')
+    def today_temperature(self):
+        """Returns True if today's temperature exits.
+        """
+        lastest_temp = Temperature.objects.all().select_related(id=self.id)
+        print(lastest_temp)
 
     class Meta:
         abstract = True

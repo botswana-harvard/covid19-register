@@ -35,7 +35,7 @@ class Visitor(
     objects = VisitorManager()
 
     def __str__(self):
-        return f'{self.fist_name}, {self.last_name} {self.identity}'
+        return f'{self.first_name}, {self.last_name} {self.identity}'
 
     def natural_key(self):
         return (self.identity,)
