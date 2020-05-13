@@ -2,7 +2,7 @@ from django.conf import settings
 from edc_model_wrapper import ModelWrapper
 
 from ..models import Temperature
-from .temerature_model_wrapper import TemperatureModelWrapper
+from .temerature_model_wrapper import EmployeeTemperatureModelWrapper
 
 
 class EmployeeModelWrapper(ModelWrapper):
@@ -20,7 +20,7 @@ class EmployeeModelWrapper(ModelWrapper):
             identity=self.identity).order_by('today_date').last()
         temp_obj = None
         if temperature and self.object.today_temperature:
-            temp_obj = TemperatureModelWrapper(temperature)
+            temp_obj = EmployeeTemperatureModelWrapper(temperature)
         else:
-            temp_obj = TemperatureModelWrapper(Temperature())
+            temp_obj = EmployeeTemperatureModelWrapper(Temperature())
         return temp_obj
