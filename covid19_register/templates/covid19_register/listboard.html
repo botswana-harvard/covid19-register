@@ -40,7 +40,6 @@
     <th>Physical Address</th>
     <th>Reason for Permit</th>
     <th>Place of Work</th>
-    <th>Date of Birth</th>
     <th>Gender</th>
     <th>Temperature</th>
     <th>Time in</th>
@@ -61,12 +60,12 @@
     </a>
     {% if contact == 'visitor' %}
     <a id="btn-temperature" class="btn btn-primary btn-sm" role="button"   
-     title="add_temperature" href="{{result.temperature_obj.href }}?identity={{result.identity}}&next={{ visitor_listboard_url }}">
+     title="add_temperature" href="{{result.temperature_obj.href }}{{result.identity}}">
      <i class="far fa-user-circle fa-sm"></i> Temperature  <i class="fa fa-share"></i></a>
     {% endif %}
     {% if contact == 'employee' %}
     <a id="btn-temperature" class="btn btn-primary btn-sm" role="button"   
-     title="add_temperature" href="{{result.temperature_obj.href }}?identity={{result.identity}}&next={{ employee_listboard_url }}">
+     title="add_temperature" href="{{result.temperature_obj.href }}{{result.identity}}">
      <i class="far fa-user-circle fa-sm"></i> Temperature  <i class="fa fa-share"></i></a>
     {% endif %}
     </div>
@@ -77,7 +76,7 @@
 	<td>{{result.permit_reason}}</td>
 	<td>{{result.work_place}}</td>
 	<td>{{result.gender}}</td>
-	<td>{{result.temperature.temperature}}</td>
-	<td>{{result.temperature.time_in}}</td>
-	<td>{{result.temperature.time_out}}</td>
+	<td>{{result.temperature_obj.temperature}}</td>
+	<td>{{result.temperature_obj.time_in}}</td>
+	<td>{{result.temperature_obj.time_out}}</td>
 {% endblock listboard_table_columns %}

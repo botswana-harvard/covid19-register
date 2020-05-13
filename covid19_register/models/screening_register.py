@@ -7,6 +7,7 @@ from django_crypto_fields.fields import IdentityField
 from django_crypto_fields.fields import LastnameField
 from django_crypto_fields.mixins import CryptoMixin
 from edc_base.model_validators import CellNumber
+from edc_base.utils import get_utcnow
 from edc_constants.choices import GENDER_UNDETERMINED
 
 from .temparature import Temperature
@@ -64,11 +65,14 @@ class ScreeningRegister(CryptoMixin, models.Model):
         null=True,
         help_text='')
 
+    @property
     def today_temperature(self):
         """Returns True if today's temperature exits.
         """
-        lastest_temp = Temperature.objects.all().select_related(id=self.id)
-        print(lastest_temp)
+        lastest_temp = Temperature.objects.filter(identity=self.identity).order_by('today_date').last()
+        if lastest_temp.today_date == get_utcnow().date():
+            return True
+        return False
 
     class Meta:
         abstract = True
