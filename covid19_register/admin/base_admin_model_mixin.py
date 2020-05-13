@@ -25,7 +25,6 @@ class ModelAdminMixin(ModelAdminNextUrlRedirectMixin,
     fieldsets = (
         (None, {
             'fields': (
-                'temperature',
                 'first_name',
                 'last_name',
                 'dob',

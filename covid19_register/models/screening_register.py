@@ -14,10 +14,6 @@ from .temparature import Temperature
 
 class ScreeningRegister(CryptoMixin, models.Model):
 
-    temperature = models.ForeignKey(
-        Temperature, on_delete=models.PROTECT, null=True, blank=True,
-        verbose_name='Temperature')
-
     first_name = FirstnameField(
         null=True, blank=False)
 
@@ -38,7 +34,8 @@ class ScreeningRegister(CryptoMixin, models.Model):
         blank=False)
 
     identity = IdentityField(
-        verbose_name='Identity number')
+        verbose_name='Identity number/Passport number',
+        unique=True)
 
     cell = EncryptedCharField(
         verbose_name='Cell number',
