@@ -35,10 +35,7 @@
     <th>#</th>
     <th>Name and Surname</th>
     <th>Edit</th>
-    <th>Omang/Passport number</th>
     <th>Contact Number</th>
-    <th>Reason for Permit</th>
-    <th>Place of Work</th>
     <th>Gender</th>
     <th>Temperature</th>
     <th>Time in</th>
@@ -69,10 +66,7 @@
     {% endif %}
     </div>
 	</td>
-	<td>{{ result.identity }} </td>
 	<td>{{ result.cell }} </td>
-	<td>{{result.permit_reason}}</td>
-	<td>{{result.work_place}}</td>
 	<td>{{result.gender}}</td>
 	<td>{{result.temperature_obj.temperature}}</td>
 	<td>{{result.temperature_obj.time_in}}</td>

@@ -25,7 +25,7 @@ class ScreeningRegister(CryptoMixin, models.Model):
     dob = models.DateField(
         verbose_name="Date of birth",
         null=True,
-        blank=False)
+        blank=True)
 
     gender = models.CharField(
         verbose_name="Gender",
@@ -41,7 +41,7 @@ class ScreeningRegister(CryptoMixin, models.Model):
     cell = EncryptedCharField(
         verbose_name='Cell number',
         validators=[CellNumber, ],
-        blank=True,
+        blank=False,
         null=True,
         help_text='')
 
