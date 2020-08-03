@@ -8,7 +8,7 @@ from .temerature_model_wrapper import VisitorTemperatureModelWrapper
 class VisitorModelWrapper(ModelWrapper):
 
     model = 'covid19_register.visitor'
-    next_url_attrs = ['identity']
+    next_url_attrs = ['cell']
     next_url_name = settings.DASHBOARD_URL_NAMES.get(
         'visitor_listboard_url')
 
@@ -17,7 +17,7 @@ class VisitorModelWrapper(ModelWrapper):
         """Return today's temperature obj.
         """
         temperature = Temperature.objects.filter(
-            identity=self.identity).order_by('today_date').last()
+            cell=self.cell).order_by('today_date').last()
         temp_obj = None
         if temperature:
             temp_obj = VisitorTemperatureModelWrapper(temperature)

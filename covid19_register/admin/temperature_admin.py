@@ -36,7 +36,7 @@ class TemperatureAdmin(ModelAdminMixin, admin.ModelAdmin):
     fieldsets = (
         (None, {
             'fields': (
-                'identity',
+                'cell',
                 'today_date',
                 'time_in',
                 'time_out',

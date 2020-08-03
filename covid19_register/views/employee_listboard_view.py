@@ -42,9 +42,9 @@ class EmployeeListBoardView(
 
     def get_queryset_filter_options(self, request, *args, **kwargs):
         options = super().get_queryset_filter_options(request, *args, **kwargs)
-        if kwargs.get('identity'):
+        if kwargs.get('cell'):
             options.update(
-                {'identity': kwargs.get('identity')})
+                {'cell': kwargs.get('cell')})
         return options
 
     def extra_search_options(self, search_term):

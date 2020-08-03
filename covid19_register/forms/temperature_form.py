@@ -7,8 +7,8 @@ from ..models import Temperature
 
 class TemperatureForm(SiteModelFormMixin, forms.ModelForm):
 
-    identity = forms.CharField(
-        label='Identity number/Passport number',
+    cell = forms.CharField(
+        label='Cell number',
         widget=forms.TextInput(attrs={'readonly': 'readonly'}))
 
     class Meta:

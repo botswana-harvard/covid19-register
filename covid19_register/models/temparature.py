@@ -1,14 +1,19 @@
 from django.db import models
 
-from django_crypto_fields.fields import IdentityField
+from django_crypto_fields.fields import EncryptedCharField
+from edc_base.model_validators import CellNumber
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.sites.site_model_mixin import SiteModelMixin
 
 
 class Temperature(SiteModelMixin, BaseUuidModel):
 
-    identity = IdentityField(
-        verbose_name='Identity number')
+    cell = EncryptedCharField(
+        verbose_name='Cell number',
+        validators=[CellNumber, ],
+        blank=False,
+        null=True,
+        help_text='')
 
     today_date = models.DateField(
         verbose_name='Date')

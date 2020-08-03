@@ -56,12 +56,12 @@
     </a>
     {% if contact == 'visitor' %}
     <a id="btn-temperature" class="btn btn-primary btn-sm" role="button"   
-     title="add_temperature" href="{{result.temperature_obj.href }}{{result.identity}}">
+     title="add_temperature" href="{{result.temperature_obj.href }}{{result.cell}}">
      <i class="far fa-user-circle fa-sm"></i> Temperature  <i class="fa fa-share"></i></a>
     {% endif %}
     {% if contact == 'employee' %}
     <a id="btn-temperature" class="btn btn-primary btn-sm" role="button"   
-     title="add_temperature" href="{{result.temperature_obj.href }}{{result.identity}}">
+     title="add_temperature" href="{{result.temperature_obj.href }}{{result.cell}}">
      <i class="far fa-user-circle fa-sm"></i> Temperature  <i class="fa fa-share"></i></a>
     {% endif %}
     </div>

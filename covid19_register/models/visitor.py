@@ -23,9 +23,9 @@ class SearchSlugModelMixin(Base):
 
 class VisitorManager(SearchSlugManager, models.Manager):
 
-    def get_by_natural_key(self, identity):
+    def get_by_natural_key(self, cell):
         return self.get(
-            identity=identity
+            cell=cell
         )
 
 
@@ -35,10 +35,10 @@ class Visitor(
     objects = VisitorManager()
 
     def __str__(self):
-        return f'{self.first_name}, {self.last_name} {self.identity}'
+        return f'{self.first_name}, {self.last_name} {self.cell}'
 
     def natural_key(self):
-        return (self.identity,)
+        return (self.cell,)
 
     class Meta:
         app_label = 'covid19_register'

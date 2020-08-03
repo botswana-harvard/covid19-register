@@ -36,13 +36,14 @@ class ScreeningRegister(CryptoMixin, models.Model):
 
     identity = IdentityField(
         verbose_name='Identity number/Passport number',
-        unique=True)
+        null=True,
+        blank=True)
 
     cell = EncryptedCharField(
         verbose_name='Cell number',
         validators=[CellNumber, ],
         blank=False,
-        null=True,
+        unique=True,
         help_text='')
 
     physical_address = EncryptedTextField(
@@ -70,7 +71,7 @@ class ScreeningRegister(CryptoMixin, models.Model):
         """Returns True if today's temperature exits.
         """
         lastest_temp = Temperature.objects.filter(
-            identity=self.identity).order_by('today_date').last()
+            cell=self.cell).order_by('today_date').last()
         if lastest_temp.today_date == get_utcnow().date():
             return True
         return False
