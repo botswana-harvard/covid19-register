@@ -32,7 +32,7 @@ class ScreeningRegister(CryptoMixin, models.Model):
         choices=GENDER_UNDETERMINED,
         max_length=1,
         null=True,
-        blank=False)
+        blank=True)
 
     identity = IdentityField(
         verbose_name='Identity number/Passport number',
