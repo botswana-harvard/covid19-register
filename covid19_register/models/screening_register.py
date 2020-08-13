@@ -10,7 +10,7 @@ from edc_base.model_validators import CellNumber
 from edc_base.utils import get_utcnow
 from edc_constants.choices import GENDER_UNDETERMINED
 
-from .temparature import Temperature
+from covid19_register.models.temparature_records import Temperature
 
 
 class ScreeningRegister(CryptoMixin, models.Model):
@@ -43,8 +43,7 @@ class ScreeningRegister(CryptoMixin, models.Model):
         verbose_name='Cell number',
         validators=[CellNumber, ],
         blank=False,
-        unique=True,
-        help_text='')
+        unique=True)
 
     physical_address = EncryptedTextField(
         verbose_name='Physical address with detailed description',
@@ -57,14 +56,12 @@ class ScreeningRegister(CryptoMixin, models.Model):
         verbose_name='Reason for permit',
         max_length=500,
         blank=True,
-        null=True,
-        help_text='')
+        null=True)
 
     work_place = EncryptedCharField(
         verbose_name='Place of work',
         blank=True,
-        null=True,
-        help_text='')
+        null=True)
 
     @property
     def today_temperature(self):
@@ -78,3 +75,5 @@ class ScreeningRegister(CryptoMixin, models.Model):
 
     class Meta:
         abstract = True
+        unique_together = (
+            'first_name', 'last_name', 'cell')

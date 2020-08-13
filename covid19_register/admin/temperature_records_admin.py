@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from django_revision.modeladmin_mixin import ModelAdminRevisionMixin
 from edc_base.sites.admin import ModelAdminSiteMixin
 from edc_model_admin import (
@@ -7,11 +6,12 @@ from edc_model_admin import (
     ModelAdminFormAutoNumberMixin, ModelAdminAuditFieldsMixin,
     ModelAdminReadOnlyMixin, ModelAdminInstitutionMixin,
     ModelAdminRedirectOnDeleteMixin)
+from edc_model_admin import TabularInlineMixin
 from edc_model_admin import audit_fieldset_tuple
 
 from ..admin_site import covid19_register_admin
-from ..forms import TemperatureForm
-from ..models import Temperature
+from ..forms import TemperatureForm, TemperatureRecordsForm
+from ..models import Temperature, TemperatureRecords
 from .base_admin_model_mixin import ModelAdminMixin
 
 
@@ -28,10 +28,11 @@ class ModelAdminMixin(ModelAdminNextUrlRedirectMixin,
     empty_value_display = '-'
 
 
-@admin.register(Temperature, site=covid19_register_admin)
-class TemperatureAdmin(ModelAdminMixin, admin.ModelAdmin):
+class TemperatureInlineAdmin(TabularInlineMixin, admin.TabularInline):
 
     form = TemperatureForm
+    model = Temperature
+    extra = 1
 
     fieldsets = (
         (None, {
@@ -52,3 +53,10 @@ class TemperatureAdmin(ModelAdminMixin, admin.ModelAdmin):
         'created', 'today_date', 'time_in', 'time_out', 'user_modified']
 
     search_fields = ('temperature',)
+
+
+@admin.register(TemperatureRecords, site=covid19_register_admin)
+class TemperatureRecordsAdmin(ModelAdminMixin, admin.ModelAdmin):
+
+    form = TemperatureRecordsForm
+    inlines = [TemperatureInlineAdmin]
