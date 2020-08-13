@@ -6,7 +6,7 @@ from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import CellNumber
 from edc_base.sites.site_model_mixin import SiteModelMixin
 
-SITE_CODE = (
+SITE_NAME = (
     ('main_building', 'Main Building'),
     ('mmabana', 'Mmabana'),
     ('tsepamo', 'Tsepamo'),
@@ -48,9 +48,9 @@ class Temperature(SiteModelMixin, BaseUuidModel):
         null=False,
         help_text='Unit is Celsius')
 
-    site_code = models.CharField(
-        verbose_name='Next of kin relationship',
-        choices=SITE_CODE,
+    site_name = models.CharField(
+        verbose_name='Site name',
+        choices=SITE_NAME,
         max_length=20,
         blank=False,
         null=False)
@@ -63,4 +63,4 @@ class Temperature(SiteModelMixin, BaseUuidModel):
         verbose_name = "Covid-19 Register"
         verbose_name_plural = "Covid-19 Register"
         unique_together = (
-            'temperature_records', 'today_date', 'site')
+            'temperature_records', 'today_date', 'site_name')

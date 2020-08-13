@@ -41,7 +41,8 @@ class TemperatureInlineAdmin(TabularInlineMixin, admin.TabularInline):
                 'today_date',
                 'time_in',
                 'time_out',
-                'temperature')}),
+                'temperature',
+                'site_name')}),
         audit_fieldset_tuple
     )
 
@@ -50,7 +51,7 @@ class TemperatureInlineAdmin(TabularInlineMixin, admin.TabularInline):
         'time_out', 'temperature']
 
     list_filter = [
-        'created', 'today_date', 'time_in', 'time_out', 'user_modified']
+        'created', 'today_date', 'site_name', 'user_modified']
 
     search_fields = ('temperature',)
 
