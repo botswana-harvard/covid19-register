@@ -20,7 +20,8 @@ from django.urls import path
 from edc_dashboard import UrlConfig
 
 from .admin_site import covid19_register_admin
-from .views import HomeView, VisitorListBoardView, EmployeeListBoardView
+from .views import (
+    CtuListBoardView, EmployeeListBoardView, HomeView, VisitorListBoardView)
 
 app_name = 'covid19_register'
 app_config = django_apps.get_app_config(app_name)
@@ -35,15 +36,71 @@ visitor_listboard_url_config = UrlConfig(
     url_name='visitor_listboard_url',
     view_class=VisitorListBoardView,
     label='visitor_listboard',
-    identifier_label='identity',
+    identifier_label='cell',
     identifier_pattern=app_config.identifier_pattern)
 
 employee_listboard_url_config = UrlConfig(
     url_name='employee_listboard_url',
     view_class=EmployeeListBoardView,
     label='employee_listboard',
-    identifier_label='identity',
+    identifier_label='cell',
+    identifier_pattern=app_config.identifier_pattern)
+
+ctu_listboard_url_config = UrlConfig(
+    url_name='ctu_listboard_url',
+    view_class=CtuListBoardView,
+    label='ctu_listboard',
+    identifier_label='site_name',
+    identifier_pattern=app_config.identifier_pattern)
+
+hptn_listboard_url_config = UrlConfig(
+    url_name='hptn_listboard_url',
+    view_class=CtuListBoardView,
+    label='hptn_listboard',
+    identifier_label='site_name',
+    identifier_pattern=app_config.identifier_pattern)
+
+ambition_listboard_url_config = UrlConfig(
+    url_name='ambition_listboard_url',
+    view_class=CtuListBoardView,
+    label='ambition_listboard',
+    identifier_label='site_name',
+    identifier_pattern=app_config.identifier_pattern)
+
+hr_listboard_url_config = UrlConfig(
+    url_name='hr_listboard_url',
+    view_class=CtuListBoardView,
+    label='hr_listboard',
+    identifier_label='site_name',
+    identifier_pattern=app_config.identifier_pattern)
+
+pepfar_listboard_url_config = UrlConfig(
+    url_name='pepfar_listboard_url',
+    view_class=CtuListBoardView,
+    label='pepfar_listboard',
+    identifier_label='site_name',
+    identifier_pattern=app_config.identifier_pattern)
+
+tsepamo_listboard_url_config = UrlConfig(
+    url_name='tsepamo_listboard_url',
+    view_class=CtuListBoardView,
+    label='tsepamo_listboard',
+    identifier_label='site_name',
+    identifier_pattern=app_config.identifier_pattern)
+
+mmabane_listboard_url_config = UrlConfig(
+    url_name='mmabane_listboard_url',
+    view_class=CtuListBoardView,
+    label='mmabane_listboard',
+    identifier_label='site_name',
     identifier_pattern=app_config.identifier_pattern)
 
 urlpatterns += visitor_listboard_url_config.listboard_urls
 urlpatterns += employee_listboard_url_config.listboard_urls
+urlpatterns += ctu_listboard_url_config.listboard_urls
+urlpatterns += hptn_listboard_url_config.listboard_urls
+urlpatterns += ambition_listboard_url_config.listboard_urls
+urlpatterns += hr_listboard_url_config.listboard_urls
+urlpatterns += pepfar_listboard_url_config.listboard_urls
+urlpatterns += tsepamo_listboard_url_config.listboard_urls
+urlpatterns += mmabane_listboard_url_config.listboard_urls
