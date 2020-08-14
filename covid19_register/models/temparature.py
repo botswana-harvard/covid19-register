@@ -1,10 +1,11 @@
 from django.db import models
-from django.db import models
-from django.db.models.deletion import PROTECT
+from django.utils import timezone
+
 from django_crypto_fields.fields import EncryptedCharField
-from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import CellNumber
+from edc_base.model_mixins import BaseUuidModel
 from edc_base.sites.site_model_mixin import SiteModelMixin
+
 
 SITE_NAME = (
     ('main_building', 'Main Building'),
@@ -17,24 +18,22 @@ SITE_NAME = (
     ('CTU', 'CTU'))
 
 
-class TemperatureRecords(SiteModelMixin, BaseUuidModel):
+class Temperature(SiteModelMixin, BaseUuidModel):
 
     cell = EncryptedCharField(
         verbose_name='Cell number',
         validators=[CellNumber, ],
         blank=False,
-        null=True)
-
-
-class Temperature(SiteModelMixin, BaseUuidModel):
-
-    temperature_records = models.ForeignKey(TemperatureRecords, on_delete=PROTECT)
+        null=True,
+        help_text='')
 
     today_date = models.DateField(
-        verbose_name='Date')
+        verbose_name='Date',
+        default=timezone.now().date())
 
     time_in = models.TimeField(
-        verbose_name='Time in')
+        verbose_name='Time in',
+        default=timezone.now().time())
 
     time_out = models.TimeField(
         verbose_name='Time out',
@@ -44,8 +43,6 @@ class Temperature(SiteModelMixin, BaseUuidModel):
     temperature = models.DecimalField(
         verbose_name='Body Temperature',
         max_digits=5, decimal_places=2,
-        blank=False,
-        null=False,
         help_text='Unit is Celsius')
 
     site_name = models.CharField(
@@ -63,4 +60,4 @@ class Temperature(SiteModelMixin, BaseUuidModel):
         verbose_name = "Covid-19 Register"
         verbose_name_plural = "Covid-19 Register"
         unique_together = (
-            'temperature_records', 'today_date', 'site_name')
+            'today_date', 'site_name')

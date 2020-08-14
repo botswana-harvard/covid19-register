@@ -1,8 +1,8 @@
 from django.conf import settings
 from edc_model_wrapper import ModelWrapper
 
-from ..models import TemperatureRecords, Temperature
-from .temerature_model_wrapper import EmployeeTemperatureRecordsModelWrapper
+from ..models import Temperature
+from .temerature_model_wrapper import EmployeeTemperatureModelWrapper
 
 
 class EmployeeModelWrapper(ModelWrapper):
@@ -16,11 +16,11 @@ class EmployeeModelWrapper(ModelWrapper):
     def temperature_obj(self):
         """Return today's temperature obj.
         """
-        temperature = TemperatureRecords.objects.filter(
+        temperature = Temperature.objects.filter(
             cell=self.cell).order_by('modified').last()
         temp_obj = None
         if temperature and self.object.today_temperature:
-            temp_obj = EmployeeTemperatureRecordsModelWrapper(temperature)
+            temp_obj = EmployeeTemperatureModelWrapper(temperature)
         else:
-            temp_obj = EmployeeTemperatureRecordsModelWrapper(TemperatureRecords())
+            temp_obj = EmployeeTemperatureModelWrapper(Temperature())
         return temp_obj

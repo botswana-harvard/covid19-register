@@ -10,7 +10,7 @@ from edc_base.model_validators import CellNumber
 from edc_base.utils import get_utcnow
 from edc_constants.choices import GENDER_UNDETERMINED
 
-from covid19_register.models.temparature_records import Temperature
+from .temparature import Temperature
 
 
 class ScreeningRegister(CryptoMixin, models.Model):
