@@ -29,11 +29,11 @@ class Temperature(SiteModelMixin, BaseUuidModel):
 
     today_date = models.DateField(
         verbose_name='Date',
-        default=timezone.now().date())
+        default=timezone.now().date)
 
     time_in = models.TimeField(
         verbose_name='Time in',
-        default=timezone.now().time())
+        default=timezone.now().time)
 
     time_out = models.TimeField(
         verbose_name='Time out',
