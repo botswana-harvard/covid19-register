@@ -3,31 +3,24 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.utils.decorators import method_decorator
 
-from edc_base.view_mixins import EdcBaseViewMixin
-from edc_dashboard.view_mixins import (
-    ListboardFilterViewMixin, SearchFormViewMixin)
-from edc_dashboard.views import ListboardView
-from edc_navbar import NavbarViewMixin
+from ..base_site_listboard_view import BaseSiteListboardView
 
-from ..model_wrappers import EmployeeModelWrapper
+from ...model_wrappers import EmployeeModelWrapper
 
 
-class EmployeeListBoardView(
-        NavbarViewMixin, EdcBaseViewMixin, ListboardFilterViewMixin,
-        SearchFormViewMixin, ListboardView):
+class CtuListBoardView(BaseSiteListboardView):
 
-    listboard_template = 'employee_listboard_template'
-    listboard_url = 'employee_listboard_url'
+    listboard_template = 'ctu_listboard_template'
+    listboard_url = 'ctu_listboard_url'
     listboard_panel_style = 'info'
     listboard_fa_icon = "fa-user-plus"
 
     model = 'covid19_register.employee'
     model_wrapper_cls = EmployeeModelWrapper
-    navbar_name = 'covid_19'
-    navbar_selected_item = 'employee'
+    navbar_selected_item = 'ctu'
     ordering = '-modified'
     paginate_by = 10
-    search_form_url = 'employee_listboard_url'
+    search_form_url = 'ctu_listboard_url'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):

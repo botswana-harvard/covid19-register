@@ -3,31 +3,24 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.utils.decorators import method_decorator
 
-from edc_base.view_mixins import EdcBaseViewMixin
-from edc_dashboard.view_mixins import (
-    ListboardFilterViewMixin, SearchFormViewMixin)
-from edc_dashboard.views import ListboardView
-from edc_navbar import NavbarViewMixin
+from ..base_site_listboard_view import BaseSiteListboardView
 
-from ..model_wrappers import VisitorModelWrapper
+from ...model_wrappers import EmployeeModelWrapper
 
 
-class VisitorListBoardView(
-        NavbarViewMixin, EdcBaseViewMixin, ListboardFilterViewMixin,
-        SearchFormViewMixin, ListboardView):
+class HptnListBoardView(BaseSiteListboardView):
 
-    listboard_template = 'visitor_listboard_template'
-    listboard_url = 'visitor_listboard_url'
+    listboard_template = 'employee_listboard_template'
+    listboard_url = 'hptn_listboard_url'
     listboard_panel_style = 'info'
     listboard_fa_icon = "fa-user-plus"
 
-    model = 'covid19_register.visitor'
-    model_wrapper_cls = VisitorModelWrapper
-    navbar_name = 'covid_19'
-    navbar_selected_item = 'visitor'
+    model = 'covid19_register.employee'
+    model_wrapper_cls = EmployeeModelWrapper
+    navbar_selected_item = 'hptn'
     ordering = '-modified'
     paginate_by = 10
-    search_form_url = 'visitor_listboard_url'
+    search_form_url = 'hptn_listboard_url'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -36,7 +29,7 @@ class VisitorListBoardView(
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context.update(
-            contact='visitor',
+            contact='employee',
             contact_add_url=self.model_cls().get_absolute_url())
         return context
 

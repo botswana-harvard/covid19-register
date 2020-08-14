@@ -20,8 +20,11 @@ from django.urls import path
 from edc_dashboard import UrlConfig
 
 from .admin_site import covid19_register_admin
-from .views import (
-    CtuListBoardView, EmployeeListBoardView, HomeView, VisitorListBoardView)
+from .views import HomeView
+from .views.employee import (
+    AmbitionListBoardView, CtuListBoardView, EmployeeListBoardView,
+    HptnListBoardView, HrListBoardView, MmabanaListBoardView)
+from .views.visitor import VisitorListBoardView
 
 app_name = 'covid19_register'
 app_config = django_apps.get_app_config(app_name)
@@ -55,21 +58,21 @@ ctu_listboard_url_config = UrlConfig(
 
 hptn_listboard_url_config = UrlConfig(
     url_name='hptn_listboard_url',
-    view_class=CtuListBoardView,
+    view_class=HptnListBoardView,
     label='hptn_listboard',
     identifier_label='site_name',
     identifier_pattern=app_config.identifier_pattern)
 
 ambition_listboard_url_config = UrlConfig(
     url_name='ambition_listboard_url',
-    view_class=CtuListBoardView,
+    view_class=AmbitionListBoardView,
     label='ambition_listboard',
     identifier_label='site_name',
     identifier_pattern=app_config.identifier_pattern)
 
 hr_listboard_url_config = UrlConfig(
     url_name='hr_listboard_url',
-    view_class=CtuListBoardView,
+    view_class=HrListBoardView,
     label='hr_listboard',
     identifier_label='site_name',
     identifier_pattern=app_config.identifier_pattern)
@@ -88,10 +91,10 @@ tsepamo_listboard_url_config = UrlConfig(
     identifier_label='site_name',
     identifier_pattern=app_config.identifier_pattern)
 
-mmabane_listboard_url_config = UrlConfig(
-    url_name='mmabane_listboard_url',
-    view_class=CtuListBoardView,
-    label='mmabane_listboard',
+mmabana_listboard_url_config = UrlConfig(
+    url_name='mmabana_listboard_url',
+    view_class=MmabanaListBoardView,
+    label='mmabana_listboard',
     identifier_label='site_name',
     identifier_pattern=app_config.identifier_pattern)
 
@@ -103,4 +106,4 @@ urlpatterns += ambition_listboard_url_config.listboard_urls
 urlpatterns += hr_listboard_url_config.listboard_urls
 urlpatterns += pepfar_listboard_url_config.listboard_urls
 urlpatterns += tsepamo_listboard_url_config.listboard_urls
-urlpatterns += mmabane_listboard_url_config.listboard_urls
+urlpatterns += mmabana_listboard_url_config.listboard_urls

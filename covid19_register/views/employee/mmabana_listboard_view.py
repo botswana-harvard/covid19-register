@@ -3,24 +3,24 @@ from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.utils.decorators import method_decorator
 
-from .base_site_listboard_view import BaseSiteListboardView
+from ..base_site_listboard_view import BaseSiteListboardView
 
-from ..model_wrappers import EmployeeModelWrapper
+from ...model_wrappers import EmployeeModelWrapper
 
 
-class CtuListBoardView(BaseSiteListboardView):
+class MmabanaListBoardView(BaseSiteListboardView):
 
-    listboard_template = 'ctu_listboard_template'
-    listboard_url = 'ctu_listboard_url'
+    listboard_template = 'employee_listboard_template'
+    listboard_url = 'mmabana_listboard_url'
     listboard_panel_style = 'info'
     listboard_fa_icon = "fa-user-plus"
 
     model = 'covid19_register.employee'
     model_wrapper_cls = EmployeeModelWrapper
-    navbar_selected_item = 'ctu'
+    navbar_selected_item = 'mmabana'
     ordering = '-modified'
     paginate_by = 10
-    search_form_url = 'ctu_listboard_url'
+    search_form_url = 'mmabana_listboard_url'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
