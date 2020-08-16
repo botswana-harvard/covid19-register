@@ -23,7 +23,8 @@ from .admin_site import covid19_register_admin
 from .views import HomeView
 from .views.employee import (
     AmbitionListBoardView, CtuListBoardView, EmployeeListBoardView,
-    HptnListBoardView, HrListBoardView, MmabanaListBoardView)
+    HptnListBoardView, HrListBoardView, MmabanaListBoardView,
+    BhpHqListBoardView)
 from .views.visitor import VisitorListBoardView
 
 app_name = 'covid19_register'
@@ -47,6 +48,13 @@ employee_listboard_url_config = UrlConfig(
     view_class=EmployeeListBoardView,
     label='employee_listboard',
     identifier_label='cell',
+    identifier_pattern=app_config.identifier_pattern)
+
+bhp_hq_listboard_url_config = UrlConfig(
+    url_name='bhp_hq_listboard_url',
+    view_class=BhpHqListBoardView,
+    label='bhp_hq_listboard',
+    identifier_label='site_name',
     identifier_pattern=app_config.identifier_pattern)
 
 ctu_listboard_url_config = UrlConfig(
@@ -100,6 +108,7 @@ mmabana_listboard_url_config = UrlConfig(
 
 urlpatterns += visitor_listboard_url_config.listboard_urls
 urlpatterns += employee_listboard_url_config.listboard_urls
+urlpatterns += bhp_hq_listboard_url_config.listboard_urls
 urlpatterns += ctu_listboard_url_config.listboard_urls
 urlpatterns += hptn_listboard_url_config.listboard_urls
 urlpatterns += ambition_listboard_url_config.listboard_urls

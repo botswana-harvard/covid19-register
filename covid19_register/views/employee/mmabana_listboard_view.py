@@ -30,6 +30,7 @@ class MmabanaListBoardView(BaseSiteListboardView):
         context = super().get_context_data(**kwargs)
         context.update(
             contact='employee',
+            site_name='mmabana',
             contact_add_url=self.model_cls().get_absolute_url())
         return context
 

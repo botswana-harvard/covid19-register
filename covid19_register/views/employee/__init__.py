@@ -1,4 +1,5 @@
 from .ambition_listboard_view import AmbitionListBoardView
+from .bhp_hq_listboard_view import BhpHqListBoardView
 from .ctu_listboard_view import CtuListBoardView
 from .employee_listboard_view import EmployeeListBoardView
 from .hr_listboard_view import HrListBoardView

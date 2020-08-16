@@ -8,7 +8,7 @@ from .temerature_model_wrapper import EmployeeTemperatureModelWrapper
 class EmployeeModelWrapper(ModelWrapper):
 
     model = 'covid19_register.employee'
-    next_url_attrs = ['cell']
+    next_url_attrs = ['cell', 'site_name']
     next_url_name = settings.DASHBOARD_URL_NAMES.get(
         'employee_listboard_url')
 

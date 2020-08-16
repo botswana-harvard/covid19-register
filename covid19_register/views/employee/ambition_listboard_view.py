@@ -30,6 +30,7 @@ class AmbitionListBoardView(BaseSiteListboardView):
         context = super().get_context_data(**kwargs)
         context.update(
             contact='employee',
+            site_name='ambition',
             contact_add_url=self.model_cls().get_absolute_url())
         return context
 

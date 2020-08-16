@@ -34,8 +34,8 @@
     <!-- begin results header -->
     <th>#</th>
     <th>Name and Surname</th>
-    <th>Edit</th>
     <th>Contact Number</th>
+    <th>Edit</th>
     <th>Site Name</th>
     <th>Temperature</th>
     <th>Time in</th>
@@ -45,8 +45,8 @@
 
 
 {% block listboard_table_columns %}
-	{{result.today_temperature}}
 	<td>{{ result.first_name }} {{result.last_name}}</td>
+	<td>{{ result.cell }} </td>
 	<td style="white-space: nowrap">
     <div class="btn-group">
     <a title="Edit data action item" role="button" 
@@ -54,21 +54,25 @@
            href="{{ result.href }}">
         <i class="fa fa-pencil-alt fa-sm"></i>
     </a>
-    {% if contact == 'visitor' %}
+    {% if site_name == result.temperature_obj.site_name %}
     <a id="btn-temperature" class="btn btn-primary btn-sm" role="button"   
      title="add_temperature" href="{{result.temperature_obj.href }}{{result.cell}}">
      <i class="far fa-user-circle fa-sm"></i> Temperature  <i class="fa fa-share"></i></a>
-    {% endif %}
-    {% if contact == 'employee' %}
-    <a id="btn-temperature" class="btn btn-primary btn-sm" role="button"   
-     title="add_temperature" href="{{result.temperature_obj.href }}{{result.cell}}">
-     <i class="far fa-user-circle fa-sm"></i> Temperature  <i class="fa fa-share"></i></a>
-    {% endif %}
     </div>
 	</td>
-	<td>{{ result.cell }} </td>
-	<td>{{result.site_name}}</td>
+	<td>{{result.temperature_obj.site_name}}</td>
 	<td>{{result.temperature_obj.temperature}}</td>
 	<td>{{result.temperature_obj.time_in}}</td>
 	<td>{{result.temperature_obj.time_out}}</td>
+	{% else	 %}
+    <a id="btn-temperature" class="btn btn-primary btn-sm" role="button"   
+     title="add_temperature" href="{{result.temperature_obj.href }}{{result.cell}}">
+     <i class="far fa-user-circle fa-sm"></i> Temperature  <i class="fa fa-share"></i></a>
+    </div>
+	</td>
+	<td></td>
+	<td></td>
+	<td></td>
+	<td></td>
+	{% endif %}
 {% endblock listboard_table_columns %}

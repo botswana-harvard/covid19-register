@@ -8,19 +8,19 @@ from ..base_site_listboard_view import BaseSiteListboardView
 from ...model_wrappers import EmployeeModelWrapper
 
 
-class HrListBoardView(BaseSiteListboardView):
+class BhpHqListBoardView(BaseSiteListboardView):
 
-    listboard_template = 'employee_listboard_template'
-    listboard_url = 'hr_listboard_url'
+    listboard_template = 'bhp_hq_listboard_template'
+    listboard_url = 'bhp_hq_listboard_url'
     listboard_panel_style = 'info'
     listboard_fa_icon = "fa-user-plus"
 
     model = 'covid19_register.employee'
     model_wrapper_cls = EmployeeModelWrapper
-    navbar_selected_item = 'Finance & HR'
+    navbar_selected_item = 'bhp_hq'
     ordering = '-modified'
     paginate_by = 10
-    search_form_url = 'hr_listboard_url'
+    search_form_url = 'bhp_hq_listboard_url'
 
     @method_decorator(login_required)
     def dispatch(self, *args, **kwargs):
@@ -30,7 +30,7 @@ class HrListBoardView(BaseSiteListboardView):
         context = super().get_context_data(**kwargs)
         context.update(
             contact='employee',
-            site_name='hr_finance',
+            site_name='bhp_hq',
             contact_add_url=self.model_cls().get_absolute_url())
         return context
 

@@ -13,9 +13,9 @@ SITE_NAME = (
     ('tsepamo', 'Tsepamo'),
     ('PEPFAR', 'PEPFAR'),
     ('hr_finance', 'HR/Finance'),
-    ('HPTN', 'HPTN'),
+    ('hptn', 'HPTN'),
     ('ambition', 'Ambition'),
-    ('CTU', 'CTU'))
+    ('ctu', 'CTU'))
 
 
 class Temperature(SiteModelMixin, BaseUuidModel):
@@ -53,11 +53,9 @@ class Temperature(SiteModelMixin, BaseUuidModel):
         null=False)
 
     def __str__(self):
-        return f'{self.today_date}, {self.temperature} {self.time_in}'
+        return f'{self.today_date}, {self.temperature} {self.time_in} {self.site_name}'
 
     class Meta:
         app_label = 'covid19_register'
         verbose_name = "Covid-19 Register"
         verbose_name_plural = "Covid-19 Register"
-        unique_together = (
-            'today_date', 'site_name')
