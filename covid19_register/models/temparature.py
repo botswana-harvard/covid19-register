@@ -8,7 +8,7 @@ from edc_base.sites.site_model_mixin import SiteModelMixin
 
 
 SITE_NAME = (
-    ('main_building', 'Main Building'),
+    ('bhp_hq', 'BHP HQ'),
     ('mmabana', 'Mmabana'),
     ('tsepamo', 'Tsepamo'),
     ('PEPFAR', 'PEPFAR'),
