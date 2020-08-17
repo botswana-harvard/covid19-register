@@ -12,8 +12,8 @@ from ...model_wrappers import EmployeeModelWrapper
 
 
 class BaseListBoardView(NavbarViewMixin, EdcBaseViewMixin,
-                         ListboardFilterViewMixin, SearchFormViewMixin,
-                         ListboardView):
+                        ListboardFilterViewMixin, SearchFormViewMixin,
+                        ListboardView):
 
     listboard_template = 'employee_listboard_template'
     listboard_url = None
