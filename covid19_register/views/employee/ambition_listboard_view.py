@@ -34,14 +34,14 @@ class AmbitionListBoardView(BaseSiteListboardView):
             contact_add_url=self.model_cls().get_absolute_url())
         return context
 
+
     def get_queryset_filter_options(self, request, *args, **kwargs):
         options = super().get_queryset_filter_options(request, *args, **kwargs)
         if kwargs.get('cell'):
             options.update(
                 {'cell': kwargs.get('cell')})
-        if kwargs.get('site_name'):
-            options.update(
-                {'site_name': kwargs.get('site_name')})
+        options.update(
+            {'site_name': 'ambition'})
         return options
     def extra_search_options(self, search_term):
         q = Q()
