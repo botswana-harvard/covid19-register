@@ -6,16 +6,7 @@ from edc_base.model_validators import CellNumber
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.sites.site_model_mixin import SiteModelMixin
 
-
-SITE_NAME = (
-    ('bhp_hq', 'BHP HQ'),
-    ('mmabana', 'Mmabana'),
-    ('tsepamo', 'Tsepamo'),
-    ('PEPFAR', 'PEPFAR'),
-    ('hr_finance', 'HR/Finance'),
-    ('hptn', 'HPTN'),
-    ('ambition', 'Ambition'),
-    ('ctu', 'CTU'))
+from .choices import SITE_NAME
 
 
 class Temperature(SiteModelMixin, BaseUuidModel):
@@ -28,12 +19,10 @@ class Temperature(SiteModelMixin, BaseUuidModel):
         help_text='')
 
     today_date = models.DateField(
-        verbose_name='Date',
-        default=timezone.now().date)
+        verbose_name='Date',)
 
     time_in = models.TimeField(
-        verbose_name='Time in',
-        default=timezone.now().time)
+        verbose_name='Time in',)
 
     time_out = models.TimeField(
         verbose_name='Time out',

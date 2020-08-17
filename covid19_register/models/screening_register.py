@@ -10,6 +10,7 @@ from edc_base.model_validators import CellNumber
 from edc_base.utils import get_utcnow
 from edc_constants.choices import GENDER_UNDETERMINED
 
+from .choices import SITE_NAME
 from .temparature import Temperature
 
 
@@ -62,6 +63,13 @@ class ScreeningRegister(CryptoMixin, models.Model):
         verbose_name='Place of work',
         blank=True,
         null=True)
+
+    site_name = models.CharField(
+        verbose_name='Site name',
+        choices=SITE_NAME,
+        max_length=20,
+        blank=False,
+        null=False)
 
     @property
     def today_temperature(self):

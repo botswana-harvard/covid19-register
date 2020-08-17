@@ -17,7 +17,7 @@ class EmployeeModelWrapper(ModelWrapper):
         """Return today's temperature obj.
         """
         temperature = Temperature.objects.filter(
-            cell=self.cell).order_by('modified').last()
+            cell=self.cell, site_name=self.site_name).order_by('modified').last()
         temp_obj = None
         if temperature and self.object.today_temperature:
             temp_obj = EmployeeTemperatureModelWrapper(temperature)

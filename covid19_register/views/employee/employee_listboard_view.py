@@ -46,6 +46,9 @@ class EmployeeListBoardView(
         if kwargs.get('cell'):
             options.update(
                 {'cell': kwargs.get('cell')})
+        if kwargs.get('site_name'):
+            options.update(
+                {'site_name': kwargs.get('site_name')})
         return options
 
     def extra_search_options(self, search_term):

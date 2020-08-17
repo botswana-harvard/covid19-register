@@ -33,12 +33,14 @@ class ModelAdminMixin(ModelAdminNextUrlRedirectMixin,
                 'cell',
                 'physical_address',
                 'permit_reason',
-                'work_place',)}),
+                'work_place',
+                'site_name',)}),
         audit_fieldset_tuple
     )
 
     radio_fields = {
-        'gender': admin.VERTICAL}
+        'gender': admin.VERTICAL,
+        'site_name': admin.VERTICAL}
 
     list_display = [
         'created', 'identity', 'cell',
