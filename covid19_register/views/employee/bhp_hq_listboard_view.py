@@ -1,51 +1,23 @@
-import re
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.utils.decorators import method_decorator
+import re
 
-from ..base_site_listboard_view import BaseSiteListboardView
-
-from ...model_wrappers import EmployeeModelWrapper
+from .base_listboard_view import BaseListBoardView
 
 
-class BhpHqListBoardView(BaseSiteListboardView):
+class BhpHqListBoardView(BaseListBoardView):
 
-    listboard_template = 'bhp_hq_listboard_template'
     listboard_url = 'bhp_hq_listboard_url'
-    listboard_panel_style = 'info'
-    listboard_fa_icon = "fa-user-plus"
-
-    model = 'covid19_register.employee'
-    model_wrapper_cls = EmployeeModelWrapper
     navbar_selected_item = 'bhp_hq'
-    ordering = '-modified'
-    paginate_by = 10
     search_form_url = 'bhp_hq_listboard_url'
 
-    @method_decorator(login_required)
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
     def get_context_data(self, **kwargs):
-        context = super().get_context_data(**kwargs)
-        context.update(
-            contact='employee',
-            site_name='bhp_hq',
-            contact_add_url=self.model_cls().get_absolute_url())
+        context = super().get_context_data(site_name='bhp_hq', **kwargs)
         return context
 
     def get_queryset_filter_options(self, request, *args, **kwargs):
-        options = super().get_queryset_filter_options(request, *args, **kwargs)
-        if kwargs.get('cell'):
-            options.update(
-                {'cell': kwargs.get('cell')})
-        if kwargs.get('site_name'):
-            options.update(
-                {'site_name': kwargs.get('site_name')})
+        options = super().get_queryset_filter_options(request,
+                                                      site_name='bhp_hq',
+                                                      *args, **kwargs)
         return options
-
-    def extra_search_options(self, search_term):
-        q = Q()
-        if re.match('^[A-Z]+$', search_term):
-            q = Q(first_name__exact=search_term)
-        return q

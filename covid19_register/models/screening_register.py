@@ -71,16 +71,6 @@ class ScreeningRegister(CryptoMixin, models.Model):
         blank=False,
         null=False)
 
-    @property
-    def today_temperature(self):
-        """Returns True if today's temperature exits.
-        """
-        lastest_temp = Temperature.objects.filter(
-            cell=self.cell).order_by('today_date').last()
-        if lastest_temp.today_date == get_utcnow().date():
-            return True
-        return False
-
     class Meta:
         abstract = True
         unique_together = (

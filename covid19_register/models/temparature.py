@@ -1,9 +1,8 @@
 from django.db import models
 from django.utils import timezone
-
 from django_crypto_fields.fields import EncryptedCharField
-from edc_base.model_validators import CellNumber
 from edc_base.model_mixins import BaseUuidModel
+from edc_base.model_validators import CellNumber
 from edc_base.sites.site_model_mixin import SiteModelMixin
 
 from .choices import SITE_NAME
@@ -48,3 +47,4 @@ class Temperature(SiteModelMixin, BaseUuidModel):
         app_label = 'covid19_register'
         verbose_name = "Covid-19 Register"
         verbose_name_plural = "Covid-19 Register"
+        unique_together = ('cell', 'today_date', 'site_name')

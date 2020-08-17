@@ -1,4 +1,5 @@
 from django.conf import settings
+from edc_base.utils import get_utcnow
 from edc_model_wrapper import ModelWrapper
 
 from ..models import Temperature
@@ -8,19 +9,19 @@ from .temerature_model_wrapper import EmployeeTemperatureModelWrapper
 class EmployeeModelWrapper(ModelWrapper):
 
     model = 'covid19_register.employee'
-    next_url_attrs = ['cell', 'site_name']
+    next_url_attrs = ['cell']
     next_url_name = settings.DASHBOARD_URL_NAMES.get(
         'employee_listboard_url')
 
     @property
     def temperature_obj(self):
-        """Return today's temperature obj.
+        """Return today's temperature obj or an empty wrapped temperature obj.
         """
-        temperature = Temperature.objects.filter(
-            cell=self.cell, site_name=self.site_name).order_by('modified').last()
-        temp_obj = None
-        if temperature and self.object.today_temperature:
-            temp_obj = EmployeeTemperatureModelWrapper(temperature)
-        else:
-            temp_obj = EmployeeTemperatureModelWrapper(Temperature())
-        return temp_obj
+        temperatures = Temperature.objects.filter(
+            cell=self.cell, site_name=self.site_name)
+        if temperatures:
+            temperature = temperatures.order_by('today_date').last()
+            if temperature.today_date == get_utcnow().date():
+                return EmployeeTemperatureModelWrapper(temperature)
+
+        return EmployeeTemperatureModelWrapper(Temperature())
