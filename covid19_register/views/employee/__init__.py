@@ -5,3 +5,5 @@ from .employee_listboard_view import EmployeeListBoardView
 from .hr_listboard_view import HrListBoardView
 from .htpn_listboard_view import HptnListBoardView
 from .mmabana_listboard_view import MmabanaListBoardView
+from .pepfar_listboard_view import PepfarListBoardView
+from .tsepamo_listboard_view import TsepamoListBoardView

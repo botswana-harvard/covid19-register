@@ -1,11 +1,10 @@
 from .base_listboard_view import BaseListBoardView
 
 
-class HrListBoardView(BaseListBoardView):
-
-    listboard_url = 'hr_listboard_url'
-    navbar_selected_item = 'hr_finance'
-    search_form_url = 'hr_listboard_url'
+class HrVisitorListBoardView(BaseListBoardView):
+    listboard_url = 'hr_visitor_listboard_url'
+    navbar_selected_item = 'finance_hr_visitor'
+    search_form_url = 'hr_visitor_listboard_url'
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(site_name='hr', **kwargs)
@@ -15,4 +14,5 @@ class HrListBoardView(BaseListBoardView):
         options = super().get_queryset_filter_options(request,
                                                       site_name='hr',
                                                       *args, **kwargs)
+
         return options
