@@ -20,4 +20,5 @@ class BhpHqListBoardView(BaseListBoardView):
         options = super().get_queryset_filter_options(request,
                                                       site_name='bhp_hq',
                                                       *args, **kwargs)
+
         return options
