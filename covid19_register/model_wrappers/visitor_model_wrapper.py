@@ -17,12 +17,13 @@ class VisitorModelWrapper(ModelWrapper):
         """Return today's temperature obj.
         """
         temperature = Temperature.objects.filter(
-            cell=self.cell).order_by('modified').last()
+            cell=self.cell, site_name=self.site_name).order_by('modified').last()
         temp_obj = None
         if temperature:
             temp_obj = VisitorTemperatureModelWrapper(
                 temperature, next_url_name=self.next_url_name)
         else:
             temp_obj = VisitorTemperatureModelWrapper(
-                Temperature(), next_url_name=self.next_url_name)
+                Temperature(cell=self.cell, site_name=self.site_name),
+                next_url_name=self.next_url_name)
         return temp_obj

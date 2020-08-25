@@ -11,6 +11,10 @@ class TemperatureForm(SiteModelFormMixin, forms.ModelForm):
         label='Cell number',
         widget=forms.TextInput(attrs={'readonly': 'readonly'}))
 
+    site_name = forms.CharField(
+        label='Site name',
+        widget=forms.TextInput(attrs={'readonly': 'readonly'}))
+
     class Meta:
         model = Temperature
         fields = '__all__'

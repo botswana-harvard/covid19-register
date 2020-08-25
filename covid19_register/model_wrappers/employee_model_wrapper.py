@@ -26,4 +26,5 @@ class EmployeeModelWrapper(ModelWrapper):
                     temperature, next_url_name=self.next_url_name)
 
         return EmployeeTemperatureModelWrapper(
-            Temperature(), next_url_name=self.next_url_name)
+            Temperature(cell=self.cell, site_name=self.site_name),
+            next_url_name=self.next_url_name)

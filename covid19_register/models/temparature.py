@@ -1,5 +1,4 @@
 from django.db import models
-from django.utils import timezone
 from django_crypto_fields.fields import EncryptedCharField
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import CellNumber

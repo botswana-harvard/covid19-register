@@ -8,7 +8,7 @@ class EmployeeTemperatureModelWrapper(ModelWrapper):
     model = 'covid19_register.temperature'
     next_url_attrs = ['cell']
     next_url_name = settings.DASHBOARD_URL_NAMES.get('employee_listboard_url')
-    querystring_attrs = ['cell']
+    querystring_attrs = ['cell', 'site_name']
 
 
 class VisitorTemperatureModelWrapper(ModelWrapper):
@@ -16,4 +16,4 @@ class VisitorTemperatureModelWrapper(ModelWrapper):
     model = 'covid19_register.temperature'
     next_url_attrs = ['cell']
     next_url_name = settings.DASHBOARD_URL_NAMES.get('visitor_listboard_url')
-    querystring_attrs = ['cell']
+    querystring_attrs = ['cell', 'site_name']

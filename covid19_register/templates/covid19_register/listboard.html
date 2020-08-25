@@ -56,7 +56,7 @@
     </a>
     {% if site_name == result.temperature_obj.site_name %}
     <a id="btn-temperature" class="btn btn-primary btn-sm" role="button"   
-     title="add_temperature" href="{{result.temperature_obj.href }}{{result.cell}}">
+     title="add_temperature" href="{{result.temperature_obj.href }}">
      <i class="far fa-user-circle fa-sm"></i> Temperature  <i class="fa fa-share"></i></a>
     </div>
 	</td>
@@ -66,11 +66,11 @@
 	<td>{{result.temperature_obj.time_out}}</td>
 	{% else	 %}
     <a id="btn-temperature" class="btn btn-primary btn-sm" role="button"   
-     title="add_temperature" href="{{result.temperature_obj.href }}{{result.cell}}">
+     title="add_temperature" href="{{result.temperature_obj.href }}">
      <i class="far fa-user-circle fa-sm"></i> Temperature  <i class="fa fa-share"></i></a>
     </div>
 	</td>
-	<td></td>
+	<td>{{result.site_name}}</td>
 	<td></td>
 	<td></td>
 	<td></td>
