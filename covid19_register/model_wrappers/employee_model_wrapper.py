@@ -22,6 +22,8 @@ class EmployeeModelWrapper(ModelWrapper):
         if temperatures:
             temperature = temperatures.order_by('today_date').last()
             if temperature.today_date == get_utcnow().date():
-                return EmployeeTemperatureModelWrapper(temperature)
+                return EmployeeTemperatureModelWrapper(
+                    temperature, next_url_name=self.next_url_name)
 
-        return EmployeeTemperatureModelWrapper(Temperature())
+        return EmployeeTemperatureModelWrapper(
+            Temperature(), next_url_name=self.next_url_name)

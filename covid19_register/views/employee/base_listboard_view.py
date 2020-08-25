@@ -1,3 +1,4 @@
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.db.models import Q
 from django.utils.decorators import method_decorator
@@ -46,6 +47,18 @@ class BaseListBoardView(NavbarViewMixin, EdcBaseViewMixin,
         options.update(
             {'site_name': kwargs.get('site_name')})
         return options
+
+    def get_wrapped_queryset(self, queryset):
+        """Returns a list of wrapped model instances.
+        """
+        object_list = []
+
+        for obj in queryset:
+            next_url_name = settings.DASHBOARD_URL_NAMES.get(
+                self.listboard_url)
+            object_list.append(
+                self.model_wrapper_cls(obj, next_url_name=next_url_name))
+        return object_list
 
     def extra_search_options(self, search_term):
         q = Q()

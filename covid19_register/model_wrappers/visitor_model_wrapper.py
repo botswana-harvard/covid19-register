@@ -20,7 +20,9 @@ class VisitorModelWrapper(ModelWrapper):
             cell=self.cell).order_by('modified').last()
         temp_obj = None
         if temperature:
-            temp_obj = VisitorTemperatureModelWrapper(temperature)
+            temp_obj = VisitorTemperatureModelWrapper(
+                temperature, next_url_name=self.next_url_name)
         else:
-            temp_obj = VisitorTemperatureModelWrapper(Temperature())
+            temp_obj = VisitorTemperatureModelWrapper(
+                Temperature(), next_url_name=self.next_url_name)
         return temp_obj
