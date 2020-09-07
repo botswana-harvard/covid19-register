@@ -48,10 +48,10 @@ class TemperatureAdmin(ModelAdminMixin, admin.ModelAdmin):
     radio_fields = {'site_name': admin.VERTICAL}
 
     list_display = [
-        'created', 'today_date', 'time_in',
+        'cell', 'created', 'today_date', 'time_in',
         'time_out', 'temperature']
 
     list_filter = [
-        'created', 'today_date', 'time_in', 'time_out', 'user_modified']
+        'cell', 'created', 'today_date', 'time_in', 'time_out', 'user_modified']
 
-    search_fields = ('temperature',)
+    search_fields = ('cell',)
