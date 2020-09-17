@@ -27,6 +27,7 @@
     </a>
     {% endif %}
 {% endblock listboard_panel %}
+
 {% block listboard_table_button_column %}
 {% endblock listboard_table_button_column %}
 
@@ -62,7 +63,10 @@
 	</td>
 	<td>{{result.temperature_obj.site_name}}</td>
 	<td>{{result.temperature_obj.temperature}}</td>
-	<td>{{result.temperature_obj.time_in}}</td>
+	<td>{% if result.temperature_obj %}
+        {{result.temperature_obj.time_in}}
+        {% endif %}
+    </td>
 	<td>{{result.temperature_obj.time_out}}</td>
 	{% else	 %}
     <a id="btn-temperature" class="btn btn-primary btn-sm" role="button"   
