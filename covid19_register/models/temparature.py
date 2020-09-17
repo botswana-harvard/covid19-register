@@ -1,8 +1,12 @@
 from django.db import models
+from django.utils import timezone
 from django_crypto_fields.fields import EncryptedCharField
 from edc_base.model_mixins import BaseUuidModel
 from edc_base.model_validators import CellNumber
+from edc_base.utils import get_utcnow
 from edc_base.sites.site_model_mixin import SiteModelMixin
+
+import datetime
 
 from .choices import SITE_NAME
 
@@ -17,10 +21,12 @@ class Temperature(SiteModelMixin, BaseUuidModel):
         help_text='')
 
     today_date = models.DateField(
-        verbose_name='Date',)
+        verbose_name='Date',
+        default=timezone.now,)
 
     time_in = models.TimeField(
-        verbose_name='Time in',)
+        verbose_name='Time in',
+        default=timezone.localtime(timezone.now()))
 
     time_out = models.TimeField(
         verbose_name='Time out',
