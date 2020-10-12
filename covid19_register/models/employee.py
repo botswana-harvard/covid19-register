@@ -40,7 +40,7 @@ class Employee(
     def natural_key(self):
         return (self.cell,)
 
-    class Meta:
+    class Meta(ScreeningRegister.Meta):
         app_label = 'covid19_register'
         verbose_name = "Covid-19 Register"
         verbose_name_plural = "Covid-19 Register"

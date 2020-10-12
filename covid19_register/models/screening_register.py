@@ -41,8 +41,7 @@ class ScreeningRegister(CryptoMixin, models.Model):
     cell = EncryptedCharField(
         verbose_name='Cell number',
         validators=[CellNumber, ],
-        blank=False,
-        unique=True)
+        blank=False)
 
     physical_address = EncryptedTextField(
         verbose_name='Physical address with detailed description',
@@ -72,4 +71,4 @@ class ScreeningRegister(CryptoMixin, models.Model):
     class Meta:
         abstract = True
         unique_together = (
-            'first_name', 'last_name', 'cell')
+            'first_name', 'last_name', 'cell', 'site_name')
